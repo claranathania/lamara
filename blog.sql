@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2022 at 05:42 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.3.33
+-- Generation Time: Aug 31, 2022 at 05:46 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -42,7 +43,8 @@ CREATE TABLE `barangs` (
 --
 
 INSERT INTO `barangs` (`id`, `nama_barang`, `harga`, `stok`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 'L\'amara', 1.5, 100, 'L\'amara termasuk Clean & Natural Beauty, formulasinya memadukan bahan-bahan alami yang berkualitas tinggi, dan bebas dari bahan pengisi dan bahan kimia berbahaya bagi kesehatan dan kecantikan. Yang terdiri dari :', NULL, NULL);
+(1, 'asdasd', 1000, 1000, 'asdhasjd', '2022-08-31 08:39:26', NULL),
+(2, 'asdasd', 1000, 1000, 'asdhasjd', '2022-08-31 08:39:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -74,7 +76,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -100,9 +102,12 @@ CREATE TABLE `pesanans` (
 --
 
 INSERT INTO `pesanans` (`id`, `user_id`, `tanggal`, `status`, `jumlah_harga`, `created_at`, `updated_at`) VALUES
-(1, 1, '2022-08-28', '0', 117, '2022-08-27 18:41:23', '2022-08-27 18:41:23'),
-(2, 1, '2022-08-28', '0', 117, '2022-08-27 18:44:52', '2022-08-27 18:44:52'),
-(3, 1, '2022-08-28', '0', 117, '2022-08-27 18:49:10', '2022-08-27 18:49:10');
+(1, 1, '2022-08-31', '0', 2000, '2022-08-31 08:39:48', '2022-08-31 08:39:48'),
+(2, 1, '2022-08-31', '0', 2000, '2022-08-31 08:42:07', '2022-08-31 08:42:07'),
+(3, 1, '2022-08-31', '0', 2000, '2022-08-31 08:42:32', '2022-08-31 08:42:32'),
+(4, 1, '2022-08-31', '0', 2000, '2022-08-31 08:43:13', '2022-08-31 08:43:13'),
+(5, 1, '2022-08-31', '0', 4000, '2022-08-31 08:45:46', '2022-08-31 08:45:46'),
+(6, 1, '2022-08-31', '0', 3000, '2022-08-31 08:46:13', '2022-08-31 08:46:13');
 
 -- --------------------------------------------------------
 
@@ -120,6 +125,15 @@ CREATE TABLE `pesanan_details` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `pesanan_details`
+--
+
+INSERT INTO `pesanan_details` (`id`, `barang_id`, `pesanan_id`, `jumlah`, `jumlah_harga`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, 2000, '2022-08-31 08:43:13', '2022-08-31 08:43:13'),
+(2, 1, 1, 4, 4000, '2022-08-31 08:45:46', '2022-08-31 08:45:46'),
+(3, 1, 1, 3, 3000, '2022-08-31 08:46:13', '2022-08-31 08:46:13');
+
 -- --------------------------------------------------------
 
 --
@@ -129,7 +143,7 @@ CREATE TABLE `pesanan_details` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -144,7 +158,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `alamat`, `no_hp`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'AnakPunk', 'lupadiri@gmail.com', NULL, '$2y$10$ewM.sa2zeLYp9pRUiiBlOO4Lcz08CrMQFD6CE5Cg8nefPDY9a5fm2', NULL, NULL, NULL, '2022-08-27 16:25:27', '2022-08-27 16:25:27');
+(1, 'Ezra Livingston', 'wofabo@mailinator.com', NULL, '$2y$10$n./MkfAu7P84W7bbqBIitORU8v9sbxYq4tgJDbZSXL2cvaUNxssc2', NULL, NULL, NULL, '2022-08-31 08:28:25', '2022-08-31 08:28:25');
 
 --
 -- Indexes for dumped tables
@@ -195,7 +209,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barangs`
 --
 ALTER TABLE `barangs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -207,13 +221,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pesanans`
 --
 ALTER TABLE `pesanans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pesanan_details`
 --
 ALTER TABLE `pesanan_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
