@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Barang;
 use App\Pesanan;
 use App\PesananDetail;
@@ -21,11 +22,9 @@ class PesanController extends Controller
     }
     public function cart(Request $request)
     {
-        $barangs = Barang::all();
-        foreach($barangs as $barang); 
         $tanggal = Carbon::now();
-        
-        
+
+        $barang = Barang::find($request->barang_id)->first();
         $pesanan = new Pesanan;
         $pesanan->user_id = Auth::user()->id;
         $pesanan->tanggal = $tanggal;
@@ -33,20 +32,15 @@ class PesanController extends Controller
         $pesanan->jumlah_harga = $barang->harga * $request->jumlah_pesan;
         $pesanan->save();
 
-        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
 
         $pesanan_detail = new PesananDetail();
-        $pesanan_detail->barang_id;
+        $pesanan_detail->barang_id = $barang->id;
         $pesanan_detail->pesanan_id = $pesanan_baru->id;
         $pesanan_detail->jumlah = $request->jumlah_pesan;
         $pesanan_detail->jumlah_harga = $barang->harga * $request->jumlah_pesan;
         $pesanan_detail->save();
 
-        return redirect('/home');
-
-        
-        
+        return redirect('/home')->with('success', 'berhasil pesan');
     }
-    
-
 }
